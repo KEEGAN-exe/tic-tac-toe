@@ -1,40 +1,61 @@
-const container = document.querySelectorAll("div");
+const board = document.querySelectorAll(".board div");
 const boton = document.querySelector("button");
-const count = document.querySelectorAll(".count")
+const count = document.querySelectorAll(".count");
 const tic = '<ion-icon name="ellipse-outline" class="circle"></ion-icon>';
-const tac = '<ion-icon name="close-outline" class="close"></ion-icon>';
+const tac = document.createElement("div");
 let turn = false;
 let ticArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 count.forEach((n) => {
-  n.textContent = 0
-})
+  n.textContent = 0;
+});
 
-container.forEach((item, index) => {
+board.forEach((item, index) => {
   item.addEventListener("click", () => {
     if (ticArray[index] === 0) {
       if (turn) {
         ticArray[index] = 2;
-        item.innerHTML = tac;
+        createCircle(item);
       } else {
         ticArray[index] = 1;
-        item.innerHTML = tic;
+        createCross(item);
       }
       turn = !turn;
-      checkWinner();
     }
-
- 
+    checkWinner();
   });
 });
 
-boton.addEventListener("click", () => {
+function resaltLoser() {
+  board.forEach((item) => {
+    if (!item.classList.contains("win")) {
+      item.classList.add('lose')
+    }
+  });
+}
+
+function createCircle(parentDiv) {
+  const container = document.createElement("span");
+  const rounded = document.createElement("span");
+  container.classList.add("container");
+  rounded.classList.add("rounded");
+  container.appendChild(rounded);
+  parentDiv.appendChild(container);
+}
+
+function createCross(parentDiv) {
+  const container = document.createElement("span");
+  container.classList.add("x-container");
+  parentDiv.appendChild(container);
+}
+
+/*boton.addEventListener("click", () => {
   clearBoard();
   container.forEach((item) => {
     item.style.pointerEvents = "auto";
     item.classList.remove("win");
   });
-});
+});*/
 
 function checkWinner() {
   const winningCombinations = [
@@ -56,20 +77,20 @@ function checkWinner() {
       ticArray[a] === ticArray[c]
     ) {
       if (ticArray[a] === 1) {
-        const contador = parseInt(count[0].textContent)
-        count[0].textContent = contador + 1
+        const contador = parseInt(count[0]);
+        count[0] = contador + 1;
         setTimeout(() => {
           console.log("Tic wins");
         }, 100);
       } else {
-        const contador = parseInt(count[1].textContent)
-        count[1].textContent = contador + 1
+        const contador = parseInt(count[1]);
+        count[1] = contador + 1;
         setTimeout(() => {
           console.log("Tac wins");
         }, 100);
       }
       resaltWinner(a, b, c);
-      container.forEach((item) => {
+      board.forEach((item) => {
         item.style.pointerEvents = "none";
       });
     }
@@ -77,14 +98,18 @@ function checkWinner() {
 }
 
 function resaltWinner(a, b, c) {
-  container[a].classList.add("win");
-  container[b].classList.add("win");
-  container[c].classList.add("win");
+  board[a].classList.add('win')
+  board[b].classList.add('win')
+  board[c].classList.add('win')
+  resaltLoser();
 }
 
 function clearBoard() {
   ticArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  container.forEach((item) => {
+  board.forEach((item) => {
     item.innerHTML = "";
+    item.style.pointerEvents = "auto";
+    item.classList.remove('win')
+    item.classList.remove('lose')
   });
 }
