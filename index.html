@@ -3,27 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="icon.png">
+    <link
+      href="https://fonts.googleapis.com/css?family=Yellowtail:400"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Tic-Tac-Toe</title>
   </head>
   <body>
-    <section class="board">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <section class="lines">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <section class="board">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </section>
     </section>
-    <!-- <section class="leaderboard">
-      <div class="container">
-        <div class="rounded"></div>
+    <label id="winner"></label>
+    <article class="record-container">
+      <span class="record">
+        <div class="content">
+          <h1>Match History</h1>
+          <div class="no-content">
+            <div class="face">
+              <div class="mouth"></div>
+            </div>
+            <span>No match's found</span>
+          </div>
+          <ul class="record-ul">
+            
+          </ul>
+        </div>
+        <div class="switch">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="arrow"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </span>
+    </article>
+    <section class="leaderboard">
+      <div class="contain">
+        <div class="container">
+          <div class="rounded"></div>
+        </div>
+        <label>0</label>
+        <div class="column"></div>
+        <div class="x-container"></div>
+        <label>0</label>
       </div>
-      <div class="x-container"></div>
-    </section> -->
+    </section>
     <script src="app.js"></script>
   </body>
 </html>
